@@ -52,6 +52,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  host: 127.0.0.1
   database: github_ci_test
   username: github_ci_test
   password: password
