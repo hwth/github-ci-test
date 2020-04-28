@@ -36,8 +36,9 @@ jobs:
         run: |
           echo 'Run test begin'
           echo 'event_name ${{ github.event_name }}'
-          echo 'pull_request.merged ${{ github.pull_request.merged }}'
-          echo 'action ${{ github.event.action }}'
+          echo 'pull_request ${{ github.pull_request }}'
+          echo 'action ${{ github.action }}'
+          echo 'ref ${{ github.ref }}'
           echo 'Run test end'
       - name: Deploy to Heroku
         run: |
