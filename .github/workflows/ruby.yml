@@ -1,6 +1,10 @@
-name: Ruby	
+name: Ruby
 
-on: [push]
+on:
+  push:
+  pull_request:
+    branches:
+      - develop
 
 jobs:
   build:
@@ -30,9 +34,18 @@ jobs:
         env:
           RAILS_ENV: test
         run: |
-          sudo apt-get -yqq install libpq-dev
-          gem install bundler:1.16.6
-          bundle install --jobs 4 --retry 3
-          bundle exec rails db:create
-          bundle exec rails db:migrate
-          bundle exec rails test
+          echo 'Run test begin'
+          echo github.event_name
+          echo github.event.pull_request.merged
+          echo github.event.action
+          echo 'Run test end'
+      - name: Deploy to Heroku
+        run: |
+          echo 'Run deploy'
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Deploy to Heroku
+        run: |
+          echo 'Run deploy'
