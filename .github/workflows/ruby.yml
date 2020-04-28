@@ -40,6 +40,6 @@ jobs:
           echo github.event.action
           echo 'Run test end'
       - name: Deploy to Heroku
-        if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
+        if: github.event_name == 'pull_request'
         run: |
           echo 'Run deploy'
