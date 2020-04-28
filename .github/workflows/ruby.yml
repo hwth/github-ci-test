@@ -35,7 +35,7 @@ jobs:
           RAILS_ENV: test
         run: |
           echo 'Run test begin'
-          echo github.event_name
+          echo ${{ github.event_name }}
           echo github.event.pull_request.merged
           echo github.event.action
           echo 'Run test end'
@@ -44,7 +44,7 @@ jobs:
           echo 'Run deploy'
   deploy:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
+    if: github.ref == true
     steps:
       - name: Deploy to Heroku
         run: |
