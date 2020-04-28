@@ -35,6 +35,9 @@ jobs:
           RAILS_ENV: test
         run: |
           echo 'Run test'
+          echo github.event_name
+          echo github.event.pull_request.merged
+          echo github.event.action
       - name: Deploy to Heroku
         if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
         run: |
