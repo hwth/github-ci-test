@@ -30,12 +30,23 @@ jobs:
         uses: actions/setup-ruby@v1
         with:
           ruby-version: 2.5
-      - name: Build and test with Rake
+      - name: Try echo context
         env:
           RAILS_ENV: test
         run: |
-          echo 'Run test'
+          echo 'Run test begin'
+          echo 'event_name ${{ github.event_name }}'
+          echo 'pull_request ${{ github.pull_request }}'
+          echo 'action ${{ github.action }}'
+          echo 'ref ${{ github.ref }}'
+          echo 'Run test end'
       - name: Deploy to Heroku
-        if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
+        run: |
+          echo 'Run deploy'
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Deploy to Heroku
         run: |
           echo 'Run deploy'
