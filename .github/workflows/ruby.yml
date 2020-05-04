@@ -26,4 +26,4 @@ jobs:
     steps:
       - name: Deploy to Heroku
         run: |
-          echo 'Run deploy Dev'
+          echo 'Run deploy on Edit'
