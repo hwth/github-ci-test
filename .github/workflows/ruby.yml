@@ -1,48 +1,9 @@
 name: Ruby
 
 on:
-  push:
   pull_request:
-    branches:
-      - develop
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    services:
-      db:
-        image: postgres:11
-        ports: ["5432:5432"]
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        env:
-          POSTGRES_DB: github_ci_test
-          POSTGRES_USER: github_ci_test
-          POSTGRES_PASSWORD: password
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Ruby 2.5
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.5
-      - name: Try echo context
-        env:
-          RAILS_ENV: test
-        run: |
-          echo 'Run test begin'
-          echo 'event_name ${{ github.event_name }}'
-          echo 'pull_request ${{ github.pull_request }}'
-          echo 'action ${{ github.action }}'
-          echo 'ref ${{ github.ref }}'
-          echo 'Run test end'
-      - name: Deploy to Heroku
-        run: |
-          echo 'Run deploy'
   deploy:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
