@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
     env:
-      HEROKU_API_KEY: ${{ secrets.HEROKU_DEV_API_KEY }}
+      HEROKU_DEV_API_KEY: ${{ secrets.HEROKU_DEV_API_KEY }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up Ruby 2.6.5
@@ -19,5 +19,5 @@ jobs:
       - name: Deploy to Heroku
         run: |
           gem install dpl
-          dpl --provider=heroku --app=huu-github-test --api-key=$HEROKU_API_KEY
+          dpl --provider=heroku --app=huu-github-test --api-key=$HEROKU_DEV_API_KEY
           heroku run rails db:migrate --exit-code --app huu-github-test            
