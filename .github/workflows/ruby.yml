@@ -12,8 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build
-      run: |
-        echo 'Run build'
+        run: |
+          echo 'Run build'
   deploy:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
