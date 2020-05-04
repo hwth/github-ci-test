@@ -20,3 +20,4 @@ jobs:
         run: |
           gem install dpl
           dpl --provider=heroku --app=huu-github-test --api-key=$HEROKU_DEV_API_KEY
+          heroku run rails db:migrate --exit-code --app huu-github-test
