@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: Build
         run: |
+          echo 'Should run on edit'
           echo 'Run test begin'
           echo 'event_name ${{ github.event_name }}'
           echo 'pull_request ${{ github.pull_request }}'
