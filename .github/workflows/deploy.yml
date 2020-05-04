@@ -10,6 +10,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
+    needs: build
     steps:
       - name: Deploy to Heroku
         run: |
