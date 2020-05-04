@@ -18,6 +18,10 @@ jobs:
           ruby-version: 2.6.5
       - name: Deploy to Heroku
         run: |
+          echo "deb http://toolbelt.heroku.com/ubuntu ./" > /etc/apt/sources.list.d/heroku.list
+          wget -O- https://toolbelt.heroku.com/apt/release.key | apt-key add -
+          apt-get update
+          apt-get install -y heroku-toolbelt
           gem install dpl
           dpl --provider=heroku --app=huu-github-test --api-key=$HEROKU_DEV_API_KEY
-          heroku run rails db:migrate --exit-code --app huu-github-test
+          heroku run rails db:migrate --exit-code --app huu-github-test            
