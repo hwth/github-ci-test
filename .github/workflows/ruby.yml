@@ -3,6 +3,8 @@ name: Build
 on:
   pull_request:
     types: [opened, closed, edited]
+    branches:
+      - develop
 
 jobs:
   build:
@@ -24,4 +26,4 @@ jobs:
     steps:
       - name: Deploy to Heroku
         run: |
-          echo 'Run deploy'
+          echo 'Run deploy Dev'
