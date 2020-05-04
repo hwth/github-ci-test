@@ -1,11 +1,14 @@
-name: Build
+name: Rails CI
 
 on: pull_request
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Build
-        run: |
-          echo 'Run build'
+      - uses: actions/checkout@v2
+      - name: Set up Ruby 2.6.5
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6.5
