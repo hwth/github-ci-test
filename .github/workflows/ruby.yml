@@ -3,6 +3,8 @@ name: Build
 on:
   pull_request:
     types: [opened, closed, edited]
+    branches:
+      - develop
 
 jobs:
   build:
