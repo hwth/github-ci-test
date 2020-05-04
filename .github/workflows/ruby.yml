@@ -1,6 +1,8 @@
 name: Ruby
 
-on: pull_request
+on:
+  pull_request:
+    types: [closed]
 
 jobs:
   build:
@@ -14,13 +16,6 @@ jobs:
           echo 'action ${{ github.action }}'
           echo 'ref ${{ github.ref }}'
           echo 'Run test end'
-      - name: Deploy to Heroku
-        run: |
-          echo 'Run deploy'
-  deploy:
-    runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
-    steps:
       - name: Deploy to Heroku
         run: |
           echo 'Run deploy'
